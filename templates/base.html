@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Movies Review</title>
+    <meta name="viewport" content="width = device-width , initial-scale = 1">
+    <link rel="icon" href="{{ url_for('static',filename='images/i-1.jpg')}}">
+
+    <!-- Bootstrap file -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css')}}">
+    <!-- Main CSS File -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/main.css')}}">
+    <!-- Font Awesome File -->
+    <script src="{{ url_for('static',filename='js/all.js')}}"></script>
+
+  </head>
+  <body>
+    <!-- style="background-color:dark; -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #e3f2fd;">
+  <a class="navbar-brand" href="{{ url_for('home') }}"><strong>Movies Review</strong></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item  active">
+        <a class="nav-link" href="{{ url_for('home') }}" title="Home">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="{{ url_for('movies') }}" title="Movies">Movies</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('signin') }}">Sign In</a>
+      </li>
+      <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Profile</a>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="{{ url_for('history') }}">History</a>
+      <a class="dropdown-item" href="{{ url_for('signout') }}">Sign Out</a>
+    </div>
+  </li>
+
+<!--  <li class="nav-item">
+  <a href="{{ url_for('signin') }}"><i class="fa fa-danger fa-2x fa-user fa-fw my-2 " aria-hidden="true" style="font-size:20px;color:white;float:right;position:relative"></i>&nbsp;</a>
+</li>
+-->
+
+ <li>
+   <form class="form-inline my-2 my-lg-0" method="POST" action="{{ url_for('movie_info') }}">
+     <input class="form-control mr-sm-2" name='title' type="search" placeholder="Search" required>
+     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+   </form>
+
+ </li>
+    </ul>
+  </div>
+
+<!--
+<div class="Signinclass">
+    <a style="text-decoration: none" href="{{ url_for('signin') }}"><b>SignIn</b></a>
+  </div>
+  -->
+</nav>
+
+    {% block main %}
+
+    {% endblock %}
+
+    <!-- JQuery file -->
+    <script src="{{ url_for('static',filename='js/jquery-3.5.1.min.js')}}"></script>
+    <!-- popper file -->
+    <script src="{{ url_for('static',filename='js/popper.js')}}"></script>
+    <!-- Bootstrap Js File -->
+    <script src="{{ url_for('static',filename='js/bootstrap.bundle.min.js')}}"></script>
+  </body>
+</html>

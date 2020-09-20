@@ -1,0 +1,24 @@
+.title-underline{
+  width: 200px;
+  height: 5px;
+}
+.iconClass{
+  float : right;
+  position: fixed;
+}
+html {
+overflow: scroll;
+overflow-x: hidden;
+}
+.Signinclass
+{
+color:White;
+float:right";
+padding:0 px;
+margin-top: 2px;
+position:relative;
+}
+
+::-webkit-scrollbar {
+width: 0px;
+}

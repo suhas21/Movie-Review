@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block main %}
+{% if error %}
+<div class="alert alert-danger alert-dismissible fade show">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+       {{ error }}
+</div>
+{% endif %}
+
+
+<div class="container-fluid" style="background-color:rgb(0,0,0);" >
+  <div class="row ">
+    <div class="col-md-6 col-lg-4 mx-auto" >
+      <div class="card mb-3" >
+          <img class="card-img-top" style="height:30rem" src= "{{ 'https://image.tmdb.org/t/p/original' + response['results'][0]['poster_path'] }} " alt= "{{ response['results'][0]['original_title'] }}">
+        <!-- w500_and_h282_face -->
+
+  <div class="card-body">
+    <h3 class="card-title">{{ response['results'][0]['original_title'] }}</h3>
+    <p class="card-text">{{ response['results'][0]['overview'] }}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><strong>Language</strong> : {{ response['results'][0]['original_language'] }}</li>
+    <li class="list-group-item"><strong>Genres</strong> : {{ genres }}</li>
+    <li class="list-group-item"><strong>Release Date</strong> : {{ response['results'][0]['release_date'] }}</li>
+    <li class="list-group-item"><strong>Status</strong> : {{ identity['status'] }}</li>
+    <li class="list-group-item"><strong>Runtime</strong> : {{ identity['runtime'] }}min</li>
+    <li class="list-group-item"><strong>Budget</strong> : ${{ identity['budget'] }}</li>
+    <li class="list-group-item"><strong>Revenue</strong> : ${{ identity['revenue']}}</li>
+  </ul>
+  <div class="card-body">
+    <a href="{{ 'https://www.imdb.com/title/' + identity['imdb_id'] + '/' }} "   class="card-link">More Info</a>
+  </div>
+</div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}
