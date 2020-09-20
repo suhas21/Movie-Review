@@ -8,7 +8,7 @@ import pymongo
 
 app = Flask(__name__)
 
-app.secret_key = os.urandom(12)
+app.secret_key = 'slfjafdaaskldfd489'
 
 #mongodb atlas connection
 client = pymongo.MongoClient("mongodb+srv://admin:admin@database.lauyn.mongodb.net/MovieReview?retryWrites=true&w=majority")
