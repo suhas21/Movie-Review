@@ -28,12 +28,11 @@
       <li class="nav-item ">
         <a class="nav-link" href="{{ url_for('movies') }}" title="Movies">Movies</a>
       </li>
-
       <li class="nav-item">
         <a class="nav-link" href="{{ url_for('signin') }}">Sign In</a>
       </li>
       <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Profile</a>
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Profile</a>
     <div class="dropdown-menu">
       <a class="dropdown-item" href="{{ url_for('history') }}">History</a>
       <a class="dropdown-item" href="{{ url_for('signout') }}">Sign Out</a>
@@ -45,7 +44,6 @@
      <input class="form-control mr-sm-2" name='title' type="search" placeholder="Search" required>
      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
    </form>
-
  </li>
     </ul>
   </div>
