@@ -1,5 +1,4 @@
 from flask import (Flask,request,render_template,flash,session)
-#from flask_pymongo import PyMongo
 from pymongo import errors
 
 import tmdbsimple as tmdb
@@ -9,7 +8,6 @@ import pymongo
 
 app = Flask(__name__)
 
-#app.config["MONGO_URI"] = "mongodb://localhost:27017/Movies"
 app.secret_key = os.urandom(12)
 
 #mongodb atlas connection
@@ -25,7 +23,6 @@ base_url = "https://image.tmdb.org/t/p/original"
 with open('movie_details.txt','r') as filehandle:
     movies_list = json.load(filehandle)
 
-#mongo = PyMongo(app)
 
 @app.route('/')
 def home():
@@ -63,7 +60,6 @@ def login():
         password = request.form['password']
 
         if client.MovieReview.Login.find_one({"email":email,"password":password}):
-            #login_data = client.MovieReview.Login.find_one({"email":email,"password":password})
             error = 'Welcome to the website'
             session['logged_in'] = True
             return render_template('home.html',heading="Login Success!",error = error)
