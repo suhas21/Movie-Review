@@ -5,16 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>Movie Review</title>
-    <link rel="icon" href="{{ url_for('static',filename='images/i-1.jpg')}}">
+    <link rel="icon" href="{{ url_for('static',filename='images/l.jpg')}}">
 
     <!-- Bootstrap file -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- Main CSS File -->
     <link rel="stylesheet" href="{{ url_for('static',filename='css/main.css')}}">
+    <!-- font awesome File -->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">
+
   </head>
   <body>
     <!-- style="background-color:dark; -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #e3f2fd;">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #e3f2fd;">
   <a class="navbar-brand" href="{{ url_for('home') }}"><strong>Movies Review</strong></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -28,9 +31,6 @@
       <li class="nav-item ">
         <a class="nav-link" href="{{ url_for('movies') }}" title="Movies">Movies</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('signin') }}">Sign In</a>
-      </li>
       <li class="nav-item dropdown ">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Profile</a>
     <div class="dropdown-menu">
@@ -38,14 +38,26 @@
       <a class="dropdown-item" href="{{ url_for('signout') }}">Sign Out</a>
     </div>
   </li>
-
- <li>
-   <form class="form-inline my-2 my-lg-0" method="POST" action="{{ url_for('movie_info') }}">
-     <input class="form-control mr-sm-2" name='title' type="search" placeholder="Search" required>
-     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-   </form>
- </li>
-    </ul>
+     </ul>
+  <!--
+   <div class="nav-item dropdown ">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-user"></i></a>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="{{ url_for('history') }}">History</a>
+    <a class="dropdown-item" href="{{ url_for('signout') }}">Sign Out</a>
+  </div>
+</div>
+-->
+<div class="nav-item">
+           <form class="navbar-form" role="search" method="POST" action="{{ url_for('movie_info') }}">
+           <div class="input-group">
+               <input type="search" class="form-control" placeholder="Search" name="title" required>
+               <div class="input-group-btn">
+                   <button class="btn btn-default btn-success" type="submit"><i class="fa fa-search"></i></button>
+               </div>
+           </div>
+           </form>
+ </div>
   </div>
 </nav>
 

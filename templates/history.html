@@ -3,9 +3,23 @@
 {% block main %}
 
 {% if error %}
-  <div class="alert alert-danger">
-     {{ error }} <a href="{{ url_for('home') }}" class="alert-link">View our Home page.</a>
+  <div class="container-fluid">
+    <div class="row text-center">
+      <div class="col-lg-4 col-md-6 col-sm-8 mx-auto">
+        <ul class="list-group">
+          {% for user in data %}
+
+              <a href="{{ url_for('movie_info',title = user) }}">
+                <li class="list-group-item"><strong>{{ user }}</strong></li>
+                 </a>
+          {% endfor %}
+        </ul>
+      </div>
+
+    </div>
+
   </div>
+
 {% endif %}
 
 {% endblock %}

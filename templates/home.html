@@ -1,13 +1,21 @@
 {% extends 'base.html' %}
 
+
 {% block main %}
 {% if error %}
-<div class="alert alert-success alert-dismissible fade show">
+<div id="alert" class="alert alert-success alert-dismissible fade show text-center col-md-4 mx-auto">
             <button type="button" class="close" data-dismiss="alert">×</button>
             <strong>{{ heading }}</strong> {{ error }}
         </div>
 {% endif %}
-<!-- carousel -->
+
+<script type="text/javascript">
+
+ setTimeout(function() {
+  $('#alert').alert('close');
+},3000);
+
+</script>
 <div class="container-fluid">
   <div class="row">
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -40,11 +48,280 @@
          </a></div>
       </div>
       <!-- previous and next icons -->
-      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-      </a>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+
     </div>
   </div>
 </div>
+<!-- end -->
+<div class="container-fluid">
+    <!-- section title -->
+    <div class="row my-3">
+      <div class="col text-center">
+        <h1 class="display-4 text-uppercase text-dark mb-0">
+          <strong>Movies</strong>
+        </h1>
+        <div class="title-underline bg-warning mx-auto"></div>
+      </div>
+    </div>
+    <!-- end of section title -->
+  <!--  first row -->
+  <div class="row my-3">
+    <div class="col-sm-4 col-md-3 col-lg-2 p-1">
+      <!-- single card -->
+      <div class="card mx-auto" style="width: 13rem;">
+        <a href="{{ url_for('movie_info',title = data[0]['title']) }}">
+          <img class="card-img-top rounded" src="{{ 'https://image.tmdb.org/t/p/original' + data[0]['poster_path'] }}" alt="{{ data[0]['title'] }}"> </a>
+        </div>
+      <!-- end of single card -->
+     </div>
+<div class="col-sm-4 col-md-3 col-lg-2 p-1 ">
+  <!-- single card -->
+  <div class="card mx-auto" style="width: 13rem;">
+    <a href="{{ url_for('movie_info',title = data[1]['title']) }}">
+      <img class="card-img-top" src="{{'https://image.tmdb.org/t/p/original' + data[1]['poster_path'] }}" alt="{{ data[1]['title'] }}"> </a>
+    </div>
+    <!-- end of single card -->
+   </div>
+<div class="col-sm-4 col-md-3 col-lg-2 p-1">
+  <!-- single card -->
+  <div class="card  mx-auto" style="width: 13rem;">
+    <a href="{{ url_for('movie_info',title = data[2]['title']) }}">
+      <img class="card-img-top mx-auto" src="{{'https://image.tmdb.org/t/p/original' + data[2]['poster_path'] }}" alt="{{ data[2]['title'] }}"> </a>
+    </div>
+    <!-- end of single card -->
+   </div>
+<div class="col-sm-4 col-md-3 col-lg-2 p-1">
+  <!-- single card -->
+  <div class="card  mx-auto" style="width: 13rem;">
+    <a href="{{ url_for('movie_info',title = data[3]['title']) }}">
+      <img class="card-img-top" src="{{'https://image.tmdb.org/t/p/original' + data[3]['poster_path'] }}" alt="{{ data[3]['title'] }}"> </a>
+    </div>
+<!-- end of single card -->
+
+</div>
+<div class="col-sm-4 col-md-3 col-lg-2 p-1">
+  <!-- single card -->
+  <div class="card  mx-auto" style="width: 13rem;">
+    <a href="{{ url_for('movie_info',title = data[4]['title']) }}">
+      <img class="card-img-top" src="{{'https://image.tmdb.org/t/p/original' + data[4]['poster_path'] }}" alt="{{ data[4]['title'] }}"> </a>
+    </div>
+<!-- end of single card -->
+
+</div>
+<div class="col-sm-4 col-md-3 col-lg-2 p-1">
+  <!-- single card -->
+  <div class="card  mx-auto" style="width: 13rem;">
+    <a href="{{ url_for('movie_info',title = data[5]['title']) }}">
+      <img class="card-img-top" src="{{'https://image.tmdb.org/t/p/original' + data[5]['poster_path'] }}" alt="{{ data[5]['title'] }}"> </a>
+    </div>
+<!-- end of single card -->
+
+</div>
+
+    <!-- end of first row -->
+
+    <!-- second row  <div class="row my-3">-->
+
+      <div class="col-sm-4 col-md-3 col-lg-2 p-1">
+        <!-- single card -->
+        <div class="card  mx-auto" style="width: 13rem;">
+          <a href="{{ url_for('movie_info',title = data[6]['title']) }}">
+            <img class="card-img-top" src="{{'https://image.tmdb.org/t/p/original' + data[6]['poster_path'] }}" alt="{{ data[6]['title'] }}">
+          </a>
+      </div>
+  <!-- end of single card -->
+</div>
+<div class="col-sm-4 col-md-3 col-lg-2 p-1">
+  <!-- single card -->
+  <div class="card  mx-auto" style="width: 13rem;">
+    <a href="{{ url_for('movie_info',title = data[7]['title']) }}">
+      <img class="card-img-top" src="{{'https://image.tmdb.org/t/p/original' + data[7]['poster_path'] }}" alt="{{ data[7]['title'] }}"> </a>
+    </div>
+<!-- end of single card -->
+
+</div>
+<div class="col-sm-4 col-md-3 col-lg-2 p-1">
+  <!-- single card -->
+  <div class="card  mx-auto" style="width: 13rem;">
+    <a href="{{ url_for('movie_info',title = data[8]['title']) }}">
+      <img class="card-img-top" src="{{'https://image.tmdb.org/t/p/original' + data[8]['poster_path'] }}" alt="{{ data[8]['title'] }}"> </a>
+    </div>
+<!-- end of single card -->
+
+</div>
+<div class="col-sm-4 col-md-3 col-lg-2 p-1">
+  <!-- single card -->
+  <div class="card  mx-auto" style="width: 13rem;">
+    <a href="{{ url_for('movie_info',title = data[9]['title']) }}">
+      <img class="card-img-top" src="{{'https://image.tmdb.org/t/p/original' + data[9]['poster_path'] }}" alt="{{ data[9]['title'] }}"> </a>
+    </div>
+<!-- end of single card -->
+
+</div>
+<div class="col-sm-4 col-md-3 col-lg-2 p-1">
+  <!-- single card -->
+  <div class="card  mx-auto" style="width: 13rem;">
+    <a href="{{ url_for('movie_info',title = data[10]['title']) }}">
+      <img class="card-img-top" src="{{'https://image.tmdb.org/t/p/original' + data[10]['poster_path'] }}" alt="{{ data[10]['title'] }}"> </a>
+    </div>
+<!-- end of single card -->
+
+</div>
+<div class="col-sm-4 col-md-3 col-lg-2 p-1">
+  <!-- single card -->
+  <div class="card  mx-auto" style="width: 13rem;">
+    <a href="{{ url_for('movie_info',title = data[11]['title']) }}">
+      <img class="card-img-top" src="{{'https://image.tmdb.org/t/p/original' + data[11]['poster_path'] }}" alt="{{ data[11]['title'] }}"> </a>
+    </div>
+<!-- end of single card -->
+
+</div>
+
+      <!--   </div> end of second row -->
+
+      <!-- third row <div class="row my-3"> -->
+
+        <div class="col-sm-4 col-md-3 col-lg-2 p-1">
+          <!-- single card -->
+          <div class="card  mx-auto" style="width: 13rem;">
+            <a href="{{ url_for('movie_info',title = data[12]['title']) }}">
+              <img class="card-img-top" src="{{'https://image.tmdb.org/t/p/original' + data[12]['poster_path'] }}" alt="{{ data[12]['title'] }}"> </a>
+            </div>
+        <!-- end of single card -->
+
+        </div>
+        <div class="col-sm-4 col-md-3 col-lg-2 p-1">
+          <!-- single card -->
+          <div class="card mx-auto" style="width: 13rem;">
+            <a href="{{ url_for('movie_info',title = data[13]['title']) }}">
+              <img class="card-img-top" src="{{'https://image.tmdb.org/t/p/original' + data[13]['poster_path'] }}" alt="{{ data[13]['title'] }}"> </a>
+            </div>
+        <!-- end of single card -->
+
+        </div>
+        <div class="col-sm-4 col-md-3 col-lg-2 p-1">
+          <!-- single card -->
+          <div class="card mx-auto" style="width: 13rem;">
+            <a href="{{ url_for('movie_info',title = data[14]['title']) }}">
+              <img class="card-img-top" src="{{'https://image.tmdb.org/t/p/original' + data[14]['poster_path'] }}" alt="{{ data[14]['title'] }}"> </a>
+            </div>
+        <!-- end of single card -->
+
+        </div>
+        <div class="col-sm-4 col-md-3 col-lg-2 p-1">
+          <!-- single card -->
+          <div class="card mx-auto" style="width: 13rem;">
+            <a href="{{ url_for('movie_info',title = data[15]['title']) }}">
+              <img class="card-img-top" src="{{'https://image.tmdb.org/t/p/original' + data[15]['poster_path'] }}" alt="{{ data[15]['title'] }}"> </a>
+            </div>
+        <!-- end of single card -->
+
+        </div>
+        <div class="col-sm-4 col-md-3 col-lg-2 p-1 ">
+          <!-- single card -->
+          <div class="card mx-auto" style="width: 13rem;">
+            <a href="{{ url_for('movie_info',title = data[16]['title']) }}">
+              <img class="card-img-top" src="{{'https://image.tmdb.org/t/p/original' + data[16]['poster_path'] }}" alt="{{ data[16]['title'] }}"> </a>
+            </div>
+        <!-- end of single card -->
+
+        </div>
+        <div class="col-sm-4 col-md-3 col-lg-2 p-1">
+          <!-- single card -->
+          <div class="card mx-auto" style="width: 13rem;">
+            <a href="{{ url_for('movie_info',title = data[17]['title']) }}">
+              <img class="card-img-top" src="{{'https://image.tmdb.org/t/p/original' + data[17]['poster_path'] }}" alt="{{ data[17]['title'] }}"> </a>
+            </div>
+        <!-- end of single card -->
+
+        </div>
+
+
+        <!-- </div> end of third row -->
+        <div class="col-sm-4 col-md-3 col-lg-2 p-1">
+          <!-- single card -->
+          <div class="card mx-auto" style="width: 13rem;">
+            <a href="{{ url_for('movie_info',title = data[18]['title']) }}">
+              <img class="card-img-top" src="{{'https://image.tmdb.org/t/p/original' + data[18]['poster_path'] }}" alt="{{ data[18]['title'] }}"> </a>
+            </div>
+        <!-- end of single card -->
+
+        </div>
+        <div class="col-sm-4 col-md-3 col-lg-2 p-1">
+          <!-- single card -->
+          <div class="card mx-auto" style="width: 13rem;">
+            <a href="{{ url_for('movie_info',title = data[19]['title']) }}">
+              <img class="card-img-top" src="{{'https://image.tmdb.org/t/p/original' + data[19]['poster_path'] }}" alt="{{ data[19]['title'] }}"> </a>
+            </div>
+        <!-- end of single card -->
+
+        </div>
+        <div class="col-sm-4 col-md-3 col-lg-2 p-1">
+          <!-- single card -->
+          <div class="card mx-auto" style="width: 13rem;">
+            <a href="{{ url_for('movie_info',title = data[20]['title']) }}">
+              <img class="card-img-top" src="{{'https://image.tmdb.org/t/p/original' + data[20]['poster_path'] }}" alt="{{ data[20]['title'] }}"> </a>
+            </div>
+        <!-- end of single card -->
+
+        </div>
+        <div class="col-sm-4 col-md-3 col-lg-2 p-1">
+          <!-- single card -->
+          <div class="card mx-auto" style="width: 13rem;">
+            <a href="{{ url_for('movie_info',title = data[21]['title']) }}">
+              <img class="card-img-top" src="{{'https://image.tmdb.org/t/p/original' + data[21]['poster_path'] }}" alt="{{ data[21]['title'] }}"> </a>
+            </div>
+        <!-- end of single card -->
+
+        </div>
+        <div class="col-sm-4 col-md-3 col-lg-2 p-1">
+          <!-- single card -->
+          <div class="card mx-auto" style="width: 13rem;">
+            <a href="{{ url_for('movie_info',title = data[22]['title']) }}">
+              <img class="card-img-top" src="{{'https://image.tmdb.org/t/p/original' + data[22]['poster_path'] }}" alt="{{ data[22]['title'] }}"> </a>
+            </div>
+        <!-- end of single card -->
+
+        </div>
+        <div class="col-sm-4 col-md-3 col-lg-2 p-1">
+          <!-- single card -->
+          <div class="card mx-auto" style="width: 13rem;">
+            <a href="{{ url_for('movie_info',title = data[23]['title']) }}">
+              <img class="card-img-top" src="{{'https://image.tmdb.org/t/p/original' + data[23]['poster_path'] }}" alt="{{ data[23]['title'] }}"> </a>
+            </div>
+        <!-- end of single card -->
+
+        </div>
+        </div>
+</div>
+
+<!--
+<script type="text/javascript">
+
+ setTimeout(function() {
+  $('#alert').alert('close');
+},3000);
+
+</script>
+
+<div class="container-fluid" >
+  <div class="row" style="border:none;height:80vh;">
+    <div class="col-lg-4 col-md-6 col-sm-6  d-flex justify-content-center" style="background-color:rgb(0,0,0);" >
+      <img src="https://image.tmdb.org/t/p/original/5BHuvQ6p9kfc091Z8RiFNhCwL4b.jpg" class="img-fluid" style=" width:80%;" alt="The Martian">
+    </div>
+    <div class="col-lg-8 col-md-6 col-sm-6 ">
+       <h1 class="display-1 text-center" >THE MARTIAN</h1>
+    </div>
+  </div>
+</div>
+-->
+
 {% endblock %}

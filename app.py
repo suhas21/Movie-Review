@@ -1,5 +1,6 @@
 from flask import (Flask,request,render_template,flash,session)
 from pymongo import errors
+from bson.objectid import ObjectId
 
 import tmdbsimple as tmdb
 import json,os
@@ -27,9 +28,11 @@ with open('movie_details.txt','r') as filehandle:
 @app.route('/')
 def home():
     if not session.get('logged_in'):
-        return render_template('sign_in.html',heading="Login Required!",error = "You need to Login.")
+        return render_template('signin.html')
     else:
-        return render_template('home.html')
+        sample_list = random.sample(movies_list,24)
+        return render_template('home.html',data = sample_list)
+
 
 @app.route('/movies')
 def movies():
@@ -37,19 +40,19 @@ def movies():
         sample_list = random.sample(movies_list,24)
         return render_template('movies.html',data = sample_list)
     else:
-        return render_template('sign_in.html',heading="Login Required!",error = "You need to Login.")
+        return render_template('signin.html',heading="Login Required!",error = "You need to Login.")
 
 @app.route('/signin')
 def signin():
     if not session.get('logged_in'):
-        return render_template('sign_in.html')
+        return render_template('signin.html')
     else:
         return render_template('thankyou.html',error="You have already Logged In.")
 
 @app.route('/signup')
 def signup():
     error = ""
-    return render_template('sign_up.html',error = error)
+    return render_template('signup.html',error = error)
 
 #verifying the user
 @app.route('/login',methods=["GET","POST"])
@@ -61,11 +64,14 @@ def login():
 
         if client.MovieReview.Login.find_one({"email":email,"password":password}):
             error = 'Welcome to the website'
+            user_data = client.MovieReview.Login.find_one({"email":email,"password":password})
+            session['id']= str(user_data.get('_id'))
             session['logged_in'] = True
-            return render_template('home.html',heading="Login Success!",error = error)
+            sample_list = random.sample(movies_list,24)
+            return render_template('home.html',data = sample_list,heading="Login Success!",error = error)
         else:
             error = 'Email or Password is Incorrect,Please Try again'
-            return render_template('sign_in.html',error = error)
+            return render_template('signin.html',error = error)
     else:
         return render_template('abort.html',error="Sorry the page you are looking is not found.")
 
@@ -73,20 +79,24 @@ def login():
 def signout():
     if session.get('logged_in'):
         session['logged_in'] = False
-        return render_template('sign_in.html',note = "Thank you!, Have A Nice Day.")
+        return render_template('signin.html',note = "Thank you!, Have A Nice Day.")
     else:
-        return render_template('sign_in.html',heading="Login Required!",error = "You need to Login.")
+        return render_template('signin.html',heading="Login Required!",error = "You need to Login.")
 
 @app.route('/history')
 def history():
     if session.get('logged_in'):
-        return render_template('history.html',error = "The page is under development :(    ")
+        p = client.MovieReview.Login.find_one({"_id":ObjectId(session['id'])})
+        data = p['history']
+        return render_template('history.html',data=data,error = "The page is under development :(    ")
     else:
-        return render_template('sign_in.html',heading="Login Required!",error = "You need to Login.")
+        return render_template('signin.html',heading="Login Required!",error = "You need to Login.")
 
 @app.route('/thankyou')
 def thankyou():
     return render_template('thankyou.html')
+
+
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -103,14 +113,14 @@ def register():
             if client.MovieReview.Login.insert_one({"name":name,"email":register_email,"password":password}):
                 heading = "Registration is Successful! "
                 note = 'Now Login to the Website'
-                return render_template('sign_in.html',heading = heading,note = note)
+                return render_template('signin.html',heading = heading,note = note)
             else:
                 error = 'There is a Server problem,Please try after sometime.'
-                return render_template('sign_up.html',error = error)
+                return render_template('signup.html',error = error)
 
         except errors.DuplicateKeyError:
             error = 'Email is already taken, Please Try again'
-        return render_template('sign_up.html',error = error)
+        return render_template('signup.html',error = error)
     else:
         return render_template('abort.html',error="Sorry the page you are looking is not found.")
 
@@ -129,6 +139,12 @@ def movie_info():
             for i in gen:
                 str = str + i['name'] + ' ,'
             str = str[0:len(str)-1]
+            client.MovieReview.Login.update_one(
+            {"_id":ObjectId(session['id'])},
+            {"$push":{"history":title}}
+            )
+
+
             return render_template('movies_info.html',response = response,identity = identity,genres = str)
         elif request.method == 'GET':
             title = request.args.get('title')
@@ -139,11 +155,16 @@ def movie_info():
             for i in gen:
                 str = str + i['name'] + ' ,'
             str = str[0:len(str)-1]
+            client.MovieReview.Login.update_one(
+            {"_id":ObjectId(session['id'])},
+            {"$push":{"history":title}}
+            )
             return render_template('movies_info.html',response = response,identity = identity,genres = str)
         else:
             return render_template('abort.html',error="Sorry the page you are looking is not found.")
     else:
-        return render_template('sign_in.html',heading="Login Required!",error = "You need to Login.")
+        return render_template('signin.html',heading="Login Required!",error = "You need to Login.")
+
 
 if __name__ == '__main__':
     app.run(debug=True)
